@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Builder
+
 public class Usuario {
 
     @Id
@@ -29,9 +29,6 @@ public class Usuario {
 
     @Column(nullable = false)
     private String cpf;
-
-    @Column(nullable = false)
-    private String senha;
 
     @OneToMany(mappedBy = "usuario")
     private List<Pedido> pedidos;

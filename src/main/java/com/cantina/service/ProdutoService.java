@@ -4,9 +4,12 @@ import com.cantina.dto.ProdutoRequestDTO;
 import com.cantina.dto.ProdutoResponseDTO;
 import com.cantina.model.Produto;
 import com.cantina.repository.ProdutoRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
+@Service
 public class ProdutoService {
 
     private final ProdutoRepository produtoRepository;
@@ -42,12 +45,16 @@ public class ProdutoService {
         Produto produto1 = produtoRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario nao encontrado"));
 
 
-        produto1.setNome(produto1.getNome());
-        produto1.setValor(produto1.getValor());
-        produto1.setQuantidade(produto1.getQuantidade());
+        produto1.setNome(produto.nome());
+        produto1.setValor(produto.valor());
+        produto1.setQuantidade(produto.quantidade());
 
-        return
+        return toDto(produtoRepository.save(produto1));
         
+    }
+
+    public void deletarProduto(Long id){
+        produtoRepository.deleteById(id);
     }
 
     private ProdutoResponseDTO toDto(Produto produto) {

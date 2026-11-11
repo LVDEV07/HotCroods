@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Builder
+
 public class Pedido {
 
     @Id
@@ -20,11 +20,11 @@ public class Pedido {
     private Long id;
 
     @Column(nullable = false)
+    @OneToMany
     private List<Produto> produtos;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-    @Column(nullable = false)
     private Usuario usuario;
 
 }
