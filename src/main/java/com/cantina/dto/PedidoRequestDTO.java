@@ -1,4 +1,11 @@
 package com.cantina.dto;
 
-public record PedidoRequestDTO() {
+import com.cantina.model.Produto;
+
+import java.util.List;
+
+public record PedidoRequestDTO(
+        List<Produto> produtos,
+        Long usuarioId
+) {
 }

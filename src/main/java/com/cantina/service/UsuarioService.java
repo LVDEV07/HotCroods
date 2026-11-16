@@ -7,7 +7,10 @@ import com.cantina.model.Usuario;
 import com.cantina.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -54,13 +57,20 @@ public class UsuarioService {
     }
 
     private UsuarioResponseDTO toDto(Usuario usuario) {
+
+        List<PedidoResponseUsuarioDTO> pedidos = Optional.ofNullable(usuario.getPedidos())
+                .orElse(Collections.emptyList())
+                .stream()
+                .filter(Objects::nonNull)
+                .map(this::toDtoPedido)
+                .toList();
         return new UsuarioResponseDTO(
                 usuario.getId(),
                 usuario.getNome(),
                 usuario.getEmail(),
                 usuario.getCpf(),
                 usuario.getSenha(),
-                usuario.getPedidos().stream().map(this::toDtoPedido).toList()
+                pedidos
         );
     }
 
