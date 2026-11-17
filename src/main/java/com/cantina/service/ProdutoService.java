@@ -3,11 +3,13 @@ package com.cantina.service;
 import com.cantina.dto.ProdutoRequestDTO;
 import com.cantina.dto.ProdutoResponseDTO;
 import com.cantina.exceptions.ProdutoNotFoundException;
+import com.cantina.model.CategoriaProduto;
 import com.cantina.model.Produto;
 import com.cantina.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -58,6 +60,18 @@ public class ProdutoService {
 
     public void deletarProduto(Long id){
         produtoRepository.deleteById(id);
+    }
+
+    public List<ProdutoResponseDTO> listarSalgados (){
+       return produtoRepository.findByCategoria(CategoriaProduto.SALGADO).stream().map(this::toDto).toList();
+    }
+
+    public List<ProdutoResponseDTO> listarDoces (){
+       return produtoRepository.findByCategoria(CategoriaProduto.DOCE).stream().map(this::toDto).toList();
+    }
+
+    public List<ProdutoResponseDTO> listarBebidas (){
+       return produtoRepository.findByCategoria(CategoriaProduto.BEBIDA).stream().map(this::toDto).toList();
     }
 
     private ProdutoResponseDTO toDto(Produto produto) {

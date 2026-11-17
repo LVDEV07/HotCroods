@@ -30,6 +30,7 @@ public class Produto {
     private BigInteger quantidade;
 
     @Column (nullable = false)
+    @Enumerated(EnumType.STRING)
     private CategoriaProduto categoria;
 
 }

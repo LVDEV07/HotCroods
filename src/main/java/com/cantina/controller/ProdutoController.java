@@ -38,6 +38,25 @@ public class ProdutoController {
         return produtoService.atualizarProduto(id, produto);
     }
 
+    @GetMapping("salgados")
+    public List<ProdutoResponseDTO> listarSalgados(){
+        return produtoService.listarSalgados();
+    }
+
+    @GetMapping("doces")
+    public List<ProdutoResponseDTO> listarDoces (){
+        return produtoService.listarDoces();
+    }
+
+    @GetMapping("bebidas")
+    public List<ProdutoResponseDTO> listarBebidas (){
+        return produtoService.listarBebidas();
+    }
+
+
+
+
+
     @DeleteMapping("{id}")
     public void deletarProduto (@PathVariable Long id){
         produtoService.deletarProduto(id);
