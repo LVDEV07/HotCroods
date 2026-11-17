@@ -2,6 +2,7 @@ package com.cantina.service;
 
 import com.cantina.dto.ProdutoRequestDTO;
 import com.cantina.dto.ProdutoResponseDTO;
+import com.cantina.exceptions.ProdutoNotFoundException;
 import com.cantina.model.Produto;
 import com.cantina.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class ProdutoService {
 
     public ProdutoResponseDTO listarProdutoPorId(Long id){
 
-        Produto produto = produtoRepository.findById(id).orElseThrow(()-> new RuntimeException("Usuario não encontrado"));
+        Produto produto = produtoRepository.findById(id).orElseThrow(()-> new ProdutoNotFoundException(id));
 
         return toDto(produto);
     }
@@ -43,7 +44,7 @@ public class ProdutoService {
     public ProdutoResponseDTO atualizarProduto(Long id, ProdutoRequestDTO produto){
 
 
-        Produto produto1 = produtoRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario nao encontrado"));
+        Produto produto1 = produtoRepository.findById(id).orElseThrow(() -> new ProdutoNotFoundException(id));
 
 
         produto1.setNome(produto.nome());

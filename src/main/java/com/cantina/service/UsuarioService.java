@@ -1,6 +1,7 @@
 package com.cantina.service;
 
 import com.cantina.dto.*;
+import com.cantina.exceptions.UsuarioNotFoundException;
 import com.cantina.model.Pedido;
 import com.cantina.model.Produto;
 import com.cantina.model.Usuario;
@@ -26,7 +27,7 @@ public class UsuarioService {
     }
 
     public UsuarioResponseDTO listarUsuarioPorId(Long id){
-        return toDto(usuarioRepository.findById(id).orElseThrow(()-> new RuntimeException("Usuario não encontrado")));
+        return toDto(usuarioRepository.findById(id).orElseThrow(()-> new UsuarioNotFoundException(id)));
     }
 
     public void deletarUsuario(Long id){
@@ -45,8 +46,7 @@ public class UsuarioService {
     }
 
     public UsuarioResponseDTO atualizarUsuario (Long id, UsuarioRequestDTO usuario){
-        Usuario usuario1 = usuarioRepository.findById(id).orElseThrow(()-> new RuntimeException("Usuario não " +
-                "encontrado"));
+        Usuario usuario1 = usuarioRepository.findById(id).orElseThrow(()-> new UsuarioNotFoundException(id));
 
         usuario1.setCpf(usuario.cpf());
         usuario1.setNome(usuario.nome());

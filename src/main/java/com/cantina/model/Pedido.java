@@ -20,7 +20,7 @@ public class Pedido {
     private Long id;
 
     @Column(nullable = false)
-    @OneToMany
+    @ManyToMany
     private List<Produto> produtos;
 
     @ManyToOne

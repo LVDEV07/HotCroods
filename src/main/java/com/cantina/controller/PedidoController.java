@@ -1,10 +1,13 @@
 package com.cantina.controller;
 
+import com.cantina.dto.ItemPedidoDTO;
 import com.cantina.dto.PedidoRequestDTO;
 import com.cantina.dto.PedidoResponseDTO;
 import com.cantina.model.Pedido;
+import com.cantina.model.Produto;
+import com.cantina.repository.ProdutoRepository;
 import com.cantina.service.PedidoService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,12 +18,16 @@ public class PedidoController {
 
     private final PedidoService pedidoService;
 
-    public PedidoController(PedidoService pedidoService) {
+    private final ProdutoRepository produtoRepository;
+
+    public PedidoController(PedidoService pedidoService, ProdutoRepository produtoRepository) {
         this.pedidoService = pedidoService;
+        this.produtoRepository = produtoRepository;
     }
 
     @PostMapping
     public PedidoResponseDTO criarPedido(@RequestBody PedidoRequestDTO pedido){
+
         return pedidoService.criarPedido(pedido);
     }
 

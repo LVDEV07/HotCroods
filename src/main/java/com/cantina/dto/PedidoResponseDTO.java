@@ -6,7 +6,7 @@ import java.util.List;
 
 public record PedidoResponseDTO(
         Long id,
-        List<Produto> produtos,
+        List<ItemPedidoDTO> produtos,
         Long usuarioID
 ) {
 }
