@@ -35,6 +35,7 @@ public class ProdutoService {
         produto1.setNome(produto.nome());
         produto1.setQuantidade(produto.quantidade());
         produto1.setValor(produto.valor());
+        produto1.setCategoria(produto.categoriaProduto());
 
         return toDto(produtoRepository.save(produto1));
     }
@@ -48,6 +49,7 @@ public class ProdutoService {
         produto1.setNome(produto.nome());
         produto1.setValor(produto.valor());
         produto1.setQuantidade(produto.quantidade());
+        produto1.setCategoria(produto.categoriaProduto());
 
         return toDto(produtoRepository.save(produto1));
         
@@ -62,7 +64,8 @@ public class ProdutoService {
                 produto.getId(),
                 produto.getNome(),
                 produto.getValor(),
-                produto.getQuantidade()
+                produto.getQuantidade(),
+                produto.getCategoria()
         );
     }
 }

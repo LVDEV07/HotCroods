@@ -20,7 +20,7 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nome;
 
     @Column(nullable = false)
@@ -28,5 +28,8 @@ public class Produto {
 
     @Column(nullable = false)
     private BigInteger quantidade;
+
+    @Column (nullable = false)
+    private CategoriaProduto categoria;
 
 }
