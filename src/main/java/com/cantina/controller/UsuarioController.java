@@ -1,5 +1,6 @@
 package com.cantina.controller;
 
+import com.cantina.dto.LoginRequestDTO;
 import com.cantina.dto.UsuarioRequestDTO;
 import com.cantina.dto.UsuarioResponseDTO;
 import com.cantina.service.UsuarioService;
@@ -40,5 +41,10 @@ public class UsuarioController {
     @DeleteMapping("{id}")
     public void deletarUsuario (@PathVariable Long id){
         usuarioService.deletarUsuario(id);
+    }
+
+    @PostMapping("/login")
+    public UsuarioResponseDTO login (@RequestBody LoginRequestDTO login){
+        return usuarioService.login(login);
     }
 }

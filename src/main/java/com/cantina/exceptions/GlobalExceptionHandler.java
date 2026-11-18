@@ -26,6 +26,11 @@ public class GlobalExceptionHandler extends RuntimeException {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(Map.of("erro", error.getMessage()));
     }
+    @ExceptionHandler(LoginInvalidoException.class)
+    public ResponseEntity<Map<String, String>> loginInvalido (LoginInvalidoException error){
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(Map.of("erro", error.getMessage()));
+    }
 
 
 }

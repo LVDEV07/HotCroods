@@ -1,6 +1,7 @@
 package com.cantina.service;
 
 import com.cantina.dto.*;
+import com.cantina.exceptions.LoginInvalidoException;
 import com.cantina.exceptions.UsuarioNotFoundException;
 import com.cantina.model.Pedido;
 import com.cantina.model.Produto;
@@ -56,6 +57,16 @@ public class UsuarioService {
         return toDto(usuarioRepository.save(usuario1));
     }
 
+    public UsuarioResponseDTO login (LoginRequestDTO login){
+        Usuario usuario = usuarioRepository.findByEmail(login.email()).orElseThrow(LoginInvalidoException::new);
+
+        if (!usuario.getSenha().equals(login.senha())){
+            throw new LoginInvalidoException();
+        }
+
+        return toDto(usuario);
+    }
+
     private UsuarioResponseDTO toDto(Usuario usuario) {
 
         List<PedidoResponseUsuarioDTO> pedidos = Optional.ofNullable(usuario.getPedidos())
@@ -68,8 +79,6 @@ public class UsuarioService {
                 usuario.getId(),
                 usuario.getNome(),
                 usuario.getEmail(),
-                usuario.getCpf(),
-                usuario.getSenha(),
                 pedidos
         );
     }
@@ -80,4 +89,6 @@ public class UsuarioService {
                 pedido.getProdutos()
         );
     }
+
+
 }
