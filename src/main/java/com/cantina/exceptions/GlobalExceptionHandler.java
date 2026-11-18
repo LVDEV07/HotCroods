@@ -31,6 +31,11 @@ public class GlobalExceptionHandler extends RuntimeException {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(Map.of("erro", error.getMessage()));
     }
+    @ExceptionHandler(ProdutoInsuficienteException.class)
+    public ResponseEntity<Map<String, String>> loginInvalido (ProdutoInsuficienteException error){
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_CONTENT)
+                .body(Map.of("erro", error.getMessage()));
+    }
 
 
 }

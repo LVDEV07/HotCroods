@@ -4,6 +4,7 @@ import com.cantina.dto.ItemPedidoDTO;
 import com.cantina.dto.PedidoRequestDTO;
 import com.cantina.dto.PedidoResponseDTO;
 import com.cantina.exceptions.PedidoNotFoundException;
+import com.cantina.exceptions.ProdutoInsuficienteException;
 import com.cantina.exceptions.ProdutoNotFoundException;
 import com.cantina.exceptions.UsuarioNotFoundException;
 import com.cantina.model.Pedido;
@@ -41,6 +42,11 @@ public class PedidoService {
         for (ItemPedidoDTO item : pedido.produtos()) {
             Produto produto = produtoRepository.findByNome(item.nome())
                     .orElseThrow(() -> new ProdutoNotFoundException(item.nome()));
+
+
+            if (produto.getQuantidade().subtract(item.quantidade()).compareTo(BigInteger.ZERO) < 0){
+                    throw new ProdutoInsuficienteException(item.nome(), produto.getQuantidade());
+            }
 
             produtos.add(produto);
 

@@ -8,6 +8,7 @@ import com.cantina.model.Produto;
 import com.cantina.repository.ProdutoRepository;
 import com.cantina.service.PedidoService;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class PedidoController {
     }
 
     @PostMapping
-    public PedidoResponseDTO criarPedido(@RequestBody PedidoRequestDTO pedido){
+    public PedidoResponseDTO criarPedido(@Valid @RequestBody PedidoRequestDTO pedido){
 
         return pedidoService.criarPedido(pedido);
     }
@@ -42,7 +43,7 @@ public class PedidoController {
     }
 
     @PutMapping("{id}")
-    public PedidoResponseDTO atualizarPedido(@PathVariable Long id, @RequestBody PedidoRequestDTO pedido){
+    public PedidoResponseDTO atualizarPedido(@PathVariable Long id,@Valid @RequestBody PedidoRequestDTO pedido){
         return pedidoService.atualizarPedido(id,pedido);
     }
 

@@ -3,6 +3,7 @@ package com.cantina.controller;
 import com.cantina.dto.ProdutoRequestDTO;
 import com.cantina.dto.ProdutoResponseDTO;
 import com.cantina.service.ProdutoService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,12 +30,12 @@ public class ProdutoController {
     }
 
     @PostMapping()
-    public ProdutoResponseDTO criarProduto(@RequestBody ProdutoRequestDTO produto){
+    public ProdutoResponseDTO criarProduto(@Valid @RequestBody ProdutoRequestDTO produto){
         return produtoService.criarProduto(produto);
     }
 
     @PutMapping("{id}")
-    public ProdutoResponseDTO atualizarProduto (@PathVariable Long id, @RequestBody ProdutoRequestDTO produto){
+    public ProdutoResponseDTO atualizarProduto (@PathVariable Long id,@Valid @RequestBody ProdutoRequestDTO produto){
         return produtoService.atualizarProduto(id, produto);
     }
 
