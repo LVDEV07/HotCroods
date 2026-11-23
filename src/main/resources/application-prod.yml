@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://dpg-dc230dhksfps73ab1fg0-a:5432/hotcroods_db
+    username: hotcroods_db_user
+    password: eYaqlgtFIJsGffJJOkfLadBnHxfpDmC2
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
