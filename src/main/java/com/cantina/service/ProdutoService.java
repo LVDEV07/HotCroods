@@ -55,7 +55,7 @@ public class ProdutoService {
         produto1.setValor(produto.valor());
         produto1.setQuantidade(produto.quantidade());
         produto1.setCategoria(produto.categoriaProduto());
-        produto1.setUrl(produto1.getUrl());
+        produto1.setUrl(produto.url());
         produto1.setDisponivel(produto.disponivel());
 
         return toDto(produtoRepository.save(produto1));
