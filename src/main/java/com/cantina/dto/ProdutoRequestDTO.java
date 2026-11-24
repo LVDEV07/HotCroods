@@ -20,6 +20,11 @@ public record ProdutoRequestDTO(
         BigInteger quantidade,
 
         @NotEmpty(message = "É obrigatório ter uma categoria")
-        CategoriaProduto categoriaProduto
+        CategoriaProduto categoriaProduto,
+
+        String url,
+
+        Boolean disponivel
+
 ) {
 }

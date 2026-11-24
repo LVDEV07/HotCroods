@@ -33,4 +33,8 @@ public class Produto {
     @Enumerated(EnumType.STRING)
     private CategoriaProduto categoria;
 
+    private String url;
+
+    private Boolean disponivel;
+
 }
