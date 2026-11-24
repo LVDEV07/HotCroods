@@ -7,21 +7,27 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 public record ProdutoRequestDTO(
+
         @NotBlank(message = "O nome é obrigatório")
+        @Size(min = 3, max = 50, message = "O nome deve ter entre 3 e 50 caracteres")
         String nome,
 
-        @Positive(message = "O valor deve ser positivo")
+        @NotNull(message = "O valor é obrigatório")
+        @DecimalMin(value = "0.01", message = "O valor mínimo é R$ 0,01")
+        @DecimalMax(value = "100.00", message = "O valor máximo é R$ 100,00")
         BigDecimal valor,
 
-        @PositiveOrZero(message = "O número deve ser 0 ou maior")
+        @NotNull(message = "A quantidade é obrigatória")
+        @Min(value = 0, message = "A quantidade não pode ser negativa")
+        @Max(value = 100, message = "A quantidade máxima é 100")
         BigInteger quantidade,
 
         @NotNull(message = "É obrigatório ter uma categoria")
         CategoriaProduto categoriaProduto,
 
+        @NotBlank
         String url,
 
         Boolean disponivel
-
 ) {
 }

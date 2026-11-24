@@ -1,6 +1,8 @@
 package com.cantina.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,10 +22,15 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @Column(nullable = false)
     private String nome;
 
+
     @Column(nullable = false)
+
+
+
     private BigDecimal valor;
 
     @Column(nullable = false)
