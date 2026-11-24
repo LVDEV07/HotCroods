@@ -83,6 +83,14 @@ public class UsuarioService {
         );
     }
 
+    public void redefinirSenha(EsqueceuSenhaRequestDTO dto) {
+        Usuario usuario = usuarioRepository.findByEmail(dto.email())
+                .orElseThrow(() -> new UsuarioNotFoundException(dto.email()));
+
+        usuario.setSenha(dto.novaSenha());
+        usuarioRepository.save(usuario);
+    }
+
     private PedidoResponseUsuarioDTO toDtoPedido(Pedido pedido) {
         return new PedidoResponseUsuarioDTO(
                 pedido.getId(),

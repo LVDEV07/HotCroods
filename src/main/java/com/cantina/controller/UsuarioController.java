@@ -1,5 +1,6 @@
 package com.cantina.controller;
 
+import com.cantina.dto.EsqueceuSenhaRequestDTO;
 import com.cantina.dto.LoginRequestDTO;
 import com.cantina.dto.UsuarioRequestDTO;
 import com.cantina.dto.UsuarioResponseDTO;
@@ -47,5 +48,10 @@ public class UsuarioController {
     @PostMapping("/login")
     public UsuarioResponseDTO login (@Valid @RequestBody LoginRequestDTO login){
         return usuarioService.login(login);
+    }
+
+    @PutMapping("/esqueceu-senha")
+    public void redefinirSenha(@Valid @RequestBody EsqueceuSenhaRequestDTO dto) {
+        usuarioService.redefinirSenha(dto);
     }
 }
